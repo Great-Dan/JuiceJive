@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JUICEJIVE</title>
+    <link rel="icon" href="images/Juice Logo - Made with PosterMyWall.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .full-screen {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+            background-color: #1e90ff;
+            
+            color: white;
+        }
+
+        .content {
+            max-width: 90px;
+        }
+        
+        #toggle-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            background-color: #ffffff;
+            color: rgb(255, 255, 255);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .sidebar {
+            width: 100%;
+            height: auto;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #334eeb;
+            padding: 8px;
+            display: flex;
+            justify-content: flex-end;
+            transition: top 0.3s;
+            align-items: center;
+        }
+
+        .sidebar a {
+            color: rgb(255, 255, 255);
+            padding: 15px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: yellow;
+            border-radius: 50px;
+            color: black;
+        }
+
+        .search-container {
+            width: 100%;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .search-container input[type="text"] {
+            width: 45%;
+            height: 10px;
+            padding: 8px;
+            font-size: 16px;
+            border: none;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 3px;
+        }
+
+        .search-container button{
+            width: 8.5%;
+            height: 30px;
+            padding: 8px;
+            font-size: 16px;
+            color: rgb(0, 0, 0);
+            background-color: #fffb00;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 3px;
+        }
+
+        .search-container button:hover {
+            background-color: #fffb00;
+        }
+
+        .search-input::placeholder{
+            font-family: Arial,sans-serif;
+            font-size: 16px;
+            color: #ccc;
+        }
+
+        .search-input{
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 50%;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            left: 0;
+            background-color: #ffffff;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            background-color: #fdfdfd;
+            color: black;
+            padding: 12px 16px;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ffffff;
+            color: #334eeb;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .content {
+            margin-top: 80px;
+            padding: 5%;
+        }
+
+
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+            overflow: hidden;
+        }
+        
+        .slide {
+            display: none;
+            text-align: center;
+        }
+
+        .slide img{
+            width: auto;
+            height: auto;
+        }
+
+        .fade {
+            animation: fadeEffect 3.0s;
+        }
+
+        @keyframes fadeEffect {
+            from {opacity: 1.5}
+            to {opacity: 2}
+        }
+
+
+        .read-more {
+            font-size: 25px;
+            background-color: red;
+            padding: 15px 35px;
+            color: black;
+            text-decoration: none;
+        }
+
+        .read-more a {
+            color: white;
+            padding: 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .read-more a:hover {
+            background-color: red;
+            border-radius: 50px;
+            color: black;
+        }
+
+        .arrow::after{
+            content: "\25BC";
+        }
+
+        footer{
+        background-color: #334eeb;
+        color:#ffffff;
+        padding: 8px;
+        text-align: center;
+        height: 25px;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        }
+        
+        .box {
+            border: 2px solid #ff8800;
+            padding: 10px;
+            width: fit-content;
+            background-color: #f0f0f0;
+        }
+
+        .inner-box {
+            width: fit-content;
+            background-color: #ffffff;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="sidebar" class="sidebar">
+        <div class="search-container">
+            <input type="text" placeholder="&#x1F50D  Type here" name="search">
+            <button type="submit">Search</button>
+        </div>
+        <a href="index.html">Home</a>
+        <div class="dropdown">
+            <a href="about.html">About</a>
+            <div class="dropdown-content">
+                <a href="Histroy_story.html">History And Story</a>
+                <a href="mission_values.html">Mission And Values</a>
+                <a href="teamprofiles.html">Team Profile</a>
+                <a href="certifications_awards.html">Certifications And Awards</a>
+            </div>
+        </div>
+        
+        <div class="dropdown">
+            <a href="products.html">Products</a>
+            <div class="dropdown-content">
+                <a href="juice.html">Juice</a>
+                <a href="skincare.html">Skincare</a>
+                <a href="jam.html">Jam</a>
+                <a href="essential-oils.html">Essential Oils</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="contact.html">Contact</a>
+            <div class="dropdown-content">
+                <a href="form.html">Forms</a>
+            </div>
+        </div>
+
+    </div>
+    <h1 style="text-align: center; margin-top: 6px;"><img src="images/Juice Logo - Made with PosterMyWall - Copy.jpg" width="10%" alt="JUICEJIVE Logo"></h1>
+    <h1 style="text-align: center;">
+        <div class="slideshow-container">
+            <div class="slide fade">
+                <img src="images/IMG-20241102-WA0006.jpg" alt="Product">
+            </div>
+            <div class="slide fade">
+                <img src="images/IMG-20241102-WA0002.jpg" alt="Product">
+            </div>
+            <div class="slide fade">
+                <img src="images/IMG-20241102-WA0001.jpg" alt="Product">
+            </div>
+            <div class="slide fade">
+                <img src="images/IMG-20241102-WA0005.jpg" alt="Product">
+            </div>
+            <div class="slide fade">
+                <img src="images/IMG-20241102-WA0003.jpg" alt="Product">
+            </div>
+            <div class="slide fade">
+                <img src="images/IMG-20241102-WA0004.jpg" alt="Product">
+            </div>
+        </div>
+        </h1>
+    <div class="box">
+    <h1 style="text-align: center; font-size: 35px;">Our Products</h1>
+    <p style="text-align: justify; font-size: normal;">At JuiceJive, our mission is to harness the vibrant flavors of nature while promoting health and sustainability. Our diverse product lineup is centered around high-quality, fruit-based offerings that enhance the culinary experience and support overall wellness. Let’s take a closer look at the primary products produced by JuiceJive and explore their unique features, benefits, and the commitment to eco-friendly practices that underpin our brand.</p>
+    <p style="font-size: 30px; text-align: center;"><strong>Tropical Fruit Juices</strong></p>
+    <p style="font-size: normal; text-align: justify;">One of our flagship products is our selection of tropical fruit juices. These juices are crafted from the freshest, locally sourced fruits, ensuring that every bottle is bursting with flavor and nutrients. Our range includes popular varieties such as mango, pineapple, passion fruit, and blended tropical mixes. Each juice is made with minimal processing to retain the natural taste and nutritional value of the fruit, which means no added sugars or artificial preservatives. The health benefits of consuming fruit juices are well-documented. According to research, fruit juices provide essential vitamins, antioxidants, and minerals that contribute to overall health. For instance, mango juice is rich in vitamins A and C, supporting immune function and skin health. Moreover, the natural sugars found in our juices provide a quick source of energy, making them an excellent choice for a refreshing drink after exercise or throughout a busy day.</p>
+    <p style="text-align: center;"><img src="images/juice.jpg" width="auto" height="auto">
+    <img src="images/juicee.jpg" width="auto" height="auto"></p>
+    <p style="font-size: 30px; text-align: center;"><strong>Mango Jams and Sauces</strong></p>
+    <p style="font-size: normal; text-align: justify;">JuiceJive takes pride in our mango jams and sauces, which are perfect for those looking to add a tropical twist to their culinary creations. Our jams are made from ripe, juicy mangoes, combined with just the right amount of sweetness and acidity to create a delicious spread for breakfast or a flavorful addition to desserts. These jams can be enjoyed on toast, used in baking, or as a filling for pastries, providing versatility in the kitchen. In addition to jams, we offer mango sauces that can enhance a variety of dishes. Whether used as a glaze for grilled meats, a topping for desserts, or an ingredient in salad dressings, our sauces bring a unique flavor profile that can elevate any meal. The use of high-quality ingredients and traditional cooking methods ensures that every jar reflects the authentic taste of mangoes, making it a favorite among consumers who appreciate gourmet products.</p>
+    <p style="text-align: center;"><img src="images/jJJJJjj.jfif" alt="Product"></p>
+    <p style="font-size: 30px; text-align: center;"><strong>Natural Soap and Skincare Products</strong></p>
+    <p style="font-size: normal; text-align: justify;">Understanding the importance of skincare, JuiceJive also offers a range of natural soaps and skincare products. These products are formulated with gentle, plant-based ingredients, free from harsh chemicals and synthetic fragrances. Our soaps are enriched with the nourishing properties of fruit extracts, providing not just a cleansing experience but also hydration and nourishment for the skin. The skincare line includes moisturizers and lotions that leverage the antioxidant-rich qualities of mangoes and other fruits. These products are designed to cater to a variety of skin types, promoting healthy, radiant skin while aligning with our commitment to eco-friendly practices. By prioritizing natural ingredients, JuiceJive aims to provide consumers with effective skincare solutions that do not compromise on safety or environmental responsibility.</p>
+    <p style="text-align: center;"><img src="images/skin.jfif" alt="skincare" width="auto" height="auto">
+    <img src="images/skincar.jpg" alt="skincare" width="auto" height="auto">
+    <img src="images/skkk.jfif" alt="Skincare" width="auto" height="auto"></p>
+    <p style="font-size: 30px; text-align: center;"><strong>Essential Oils</strong></p>
+    <p style="font-size: normal; text-align: justify;">In addition to food and skincare products, JuiceJive produces essential oils derived from mangoes and other tropical fruits. These oils are extracted through steam distillation, ensuring that the purity and potency of the essential oils are preserved. They can be used for aromatherapy, massages, and skincare applications, offering a multitude of benefits. Essential oils have gained popularity for their therapeutic properties, including stress relief, improved mood, and enhanced relaxation. Mango essential oil, in particular, is known for its sweet fragrance and uplifting qualities, making it a perfect addition to aromatherapy practices. Additionally, our essential oils can be blended with carrier oils for topical applications, providing a natural alternative to commercial fragrances and skincare products.</p>
+    <p style="text-align: center;"><img src="images/Jjjj.jfif" alt="Product"></p>
+    <p style="font-size: 30px; text-align: center;"><strong>Commitment to sustainability</strong></p>
+    <p style="font-size: normal; text-align: justify;">At JuiceJive, sustainability is at the heart of everything we do. Our products are crafted using locally sourced ingredients, which not only supports local farmers but also reduces our carbon footprint. By prioritizing eco-friendly practices, we aim to create a positive impact on the environment while providing consumers with high-quality products they can trust. We utilize sustainable packaging solutions to further our commitment to the planet. Our bottles and jars are made from recyclable materials, and we encourage our customers to recycle after use. JuiceJive also engages in community initiatives that promote awareness about sustainability and healthy living, reinforcing our role as a responsible brand in the food and wellness industry.</p>
+    <p style="font-size: 30px; text-align: center;"><strong>Conclusion</strong></p>
+    <p style="font-size: normal; text-align: justify;">In conclusion, JuiceJive is dedicated to producing a range of high-quality, natural products that enhance the flavors of everyday life while promoting health and sustainability. From our refreshing tropical fruit juices to our delicious jams, sauces, skincare products, and essential oils, each item reflects our commitment to quality and the well-being of our customers. By choosing JuiceJive, consumers can enjoy the vibrant tastes of nature while supporting a brand that prioritizes ecological responsibility and local sourcing. Whether you're looking to invigorate your diet, enhance your culinary creations, or nourish your skin, JuiceJive has something for everyone, bringing the essence of the tropics to your table and daily routine.
+    </div>
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        document.addEventListener('mousemove', function(event) {
+            if (event.clientY < 50) {
+                sidebar.style.top = "0";
+            } else {
+                sidebar.style.top = "-60px";
+            }
+        });
+
+        let slideIndex = 0;
+        let isPlaying = true;
+        let slideInterval;
+
+        // Function to show slides
+        function showSlides() {
+            let slides = document.getElementsByClassName("slide");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1; }
+            slides[slideIndex - 1].style.display = "block";
+        }
+
+        // Function to start the slideshow
+        function startSlideshow() {
+            slideInterval = setInterval(showSlides, 3000);
+        }
+
+        // Initial call to start the slideshow
+        showSlides();
+        startSlideshow();
+
+        // Function to toggle slideshow play/pause
+        document.getElementById("toggleBtn").addEventListener("click", function() {
+            if (isPlaying) {
+                clearInterval(slideInterval);
+                this.textContent = "Play Slideshow";
+            } else {
+                startSlideshow();
+                this.textContent = "Pause Slideshow";
+            }
+            isPlaying = !isPlaying;
+        });
+    </script>
+     <marquee behavior="" direction=""><p style="font-size: 20px; font-style: normal; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"><strong>This Is Your Home Of Quality Products. Contact Us Let's Make Business At Affordable Prices.</strong></p></marquee>
+     <footer>
+        <p>&copy;Copyright;2024 JuiceJive. All rights reserved.</p>
+    </footer>
+</body>
+</html>
